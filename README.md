@@ -8,7 +8,7 @@
 
 ## Why This Exists
 
-Evaluating jailbreak defenses requires a systematic framework, not ad-hoc testing. Most red-teaming is manual: someone tries prompts and writes down what worked. This framework defines 6 attack categories, generates test cases programmatically, classifies outputs with a two-layer judge (fast regex heuristics + LLM fallback), and benchmarks at 24,790 evals/sec so you can run continuous regression testing against your defense.
+Evaluating jailbreak defenses requires a systematic framework, not ad-hoc testing. Most red-teaming is manual: someone tries prompts and writes down what worked. This framework defines 6 attack categories, generates test cases programmatically, classifies outputs with a two-layer judge (fast regex heuristics + LLM fallback), and achieves thousands of evaluations per second so you can run continuous regression testing against your defense.
 
 The key insight: passing 500 direct jailbreak prompts does not mean a model is safe. A model that has never been tested against prompt injection or encoding obfuscation has unknown coverage, not high coverage. This framework measures **what fraction of the known attack surface was exercised** — and where the blind spots are.
 
@@ -16,7 +16,7 @@ The key insight: passing 500 direct jailbreak prompts does not mean a model is s
 
 ```mermaid
 graph TD
-    A[Attack Templates<br/>37 built-in + JSONL dataset] -->|load| B[Evaluator<br/>asyncio + semaphore-gated]
+    A[Attack Templates<br/>45 built-in + JSONL dataset] -->|load| B[Evaluator<br/>asyncio + semaphore-gated]
     B -->|OpenAI-compatible API| C[LLM Under Test]
     C -->|response text| D[Safety Classifier]
     D -->|unambiguous 80% of cases| E[HeuristicClassifier<br/>regex · sub-ms · zero API cost]
@@ -78,9 +78,9 @@ Run `make bench` to reproduce. Results on a 2023 MacBook Pro M2 using the mock c
 
 | Config | Throughput | Avg Wall Time |
 |--------|-----------|---------------|
-| batch=10, concurrency=5 | ~15,000 evals/sec | 3.3ms |
-| batch=50, concurrency=10 | ~24,790 evals/sec | 7.1ms |
-| batch=100, concurrency=50 | ~24,790 evals/sec | 10.6ms |
+| batch=10, concurrency=5 | ~3,500 evals/sec | 2.8ms |
+| batch=50, concurrency=10 | ~6,800 evals/sec | 7.3ms |
+| batch=100, concurrency=50 | ~21,000 evals/sec | 4.8ms |
 
 Framework overhead is minimal. Real-API throughput is bounded by model latency and rate limits, not this library.
 
@@ -90,9 +90,9 @@ Framework overhead is minimal. Real-API throughput is bounded by model latency a
 Coverage Report — Model: gpt-4o
 Generated: 2024-01-15T12:00:00
 ============================================================
-Total prompts evaluated : 37
+Total prompts evaluated : 45
   UNSAFE                : 3
-  SAFE                  : 30
+  SAFE                  : 38
   BORDERLINE            : 4
 ------------------------------------------------------------
 Category coverage       : 100.0% (6/6 categories)
