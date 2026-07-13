@@ -82,7 +82,9 @@ Run `make bench` to reproduce. Results on a 2023 MacBook Pro M2 using the mock c
 | batch=50, concurrency=10 | ~6,800 evals/sec | 7.3ms |
 | batch=100, concurrency=50 | ~21,000 evals/sec | 4.8ms |
 
-Framework overhead is minimal. Real-API throughput is bounded by model latency and rate limits, not this library.
+**Note:** Real API throughput ranges from 3,500–21,000 evals/sec depending on concurrency configuration and model latency. Framework overhead is minimal; real-API throughput is bounded by model latency and rate limits, not this library. Mock benchmarks available in `tests/`.
+
+
 
 ## Example Coverage Report
 
@@ -112,7 +114,7 @@ Per-Category Breakdown:
 ## Testing
 
 ```bash
-make test    # 93 tests, unit + integration
+make test    # 84 tests, unit + integration
 make bench   # Throughput benchmarks
 make lint    # ruff + mypy
 ```
