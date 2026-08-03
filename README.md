@@ -142,4 +142,4 @@ adversarial-eval report
 
 MIT — see [LICENSE](LICENSE).
 
-Built by [Rajath John](https://github.com/jrajath94) — VP Software Engineering @ JPMorgan Chase.
+Built by [Rajath John Bosco](https://github.com/jrajath94). Independent work, maintained separately from employment.
