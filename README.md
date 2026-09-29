@@ -1,6 +1,6 @@
 # adversarial-prompt-suite
 
-> Systematic red-teaming framework for LLM adversarial evaluation — attack surface coverage metrics, not just attack counts.
+> Systematic red-teaming framework for LLM adversarial evaluation - attack surface coverage metrics, not just attack counts.
 
 [![CI](https://github.com/jrajath94/adversarial-prompt-suite/actions/workflows/ci.yml/badge.svg)](https://github.com/jrajath94/adversarial-prompt-suite/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -10,7 +10,7 @@
 
 Evaluating jailbreak defenses requires a systematic framework, not ad-hoc testing. Most red-teaming is manual: someone tries prompts and writes down what worked. This framework defines 6 attack categories, generates test cases programmatically, classifies outputs with a two-layer judge (fast regex heuristics + LLM fallback), and achieves thousands of evaluations per second so you can run continuous regression testing against your defense.
 
-The key insight: passing 500 direct jailbreak prompts does not mean a model is safe. A model that has never been tested against prompt injection or encoding obfuscation has unknown coverage, not high coverage. This framework measures **what fraction of the known attack surface was exercised** — and where the blind spots are.
+The key insight: passing 500 direct jailbreak prompts does not mean a model is safe. A model that has never been tested against prompt injection or encoding obfuscation has unknown coverage, not high coverage. This framework measures **what fraction of the known attack surface was exercised** - and where the blind spots are.
 
 ## Architecture
 
@@ -140,6 +140,6 @@ adversarial-eval report
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT - see [LICENSE](LICENSE).
 
 Built by [Rajath John Bosco](https://github.com/jrajath94). Independent work, maintained separately from employment.
